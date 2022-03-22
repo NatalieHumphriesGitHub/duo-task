@@ -3,6 +3,8 @@ services:
   nginx: 
     container_name: nginx
     image: nginx:latest
+    networks: 
+      - duo-task-net
     ports:
       - target: 80
         published: 80
@@ -17,5 +19,10 @@ services:
     container_name: flask-app
     image: numphries/duo-task_flask-app:latest
     build: .  
+    networks:
+      - duo-task-net
     environment: 
       YOUR_NAME: ${YOUR_NAME}
+networks:
+  duo-task-net:
+  
