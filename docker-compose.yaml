@@ -1,0 +1,21 @@
+version: "3.8"
+services: 
+  nginx: 
+    container_name: nginx
+    image: nginx:latest
+    ports:
+      - target: 80
+        published: 80
+        protocol: tcp
+    volumes: 
+      - type: bind
+        source: ./nginx.conf
+        target: /etc/nginx/nginx.conf
+    depends_on:
+      - "duo-task"
+  duo-task:
+    container_name: flask-app
+    image: numphries/duo-task_flask-app:latest
+    build: .  
+    environment: 
+      YOUR_NAME: ${YOUR_NAME}
