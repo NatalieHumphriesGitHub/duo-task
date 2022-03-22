@@ -9,7 +9,7 @@ pipeline {
             sh "/bin/bash -c 'docker rmi \$(docker images -q)'"
             sh "docker-compose build --parallel"
             sh "docker login -u ${DOCKER_CREDS_USR} -p ${DOCKER_CREDS_PSW}"
-            SH "docker-compose push"
+            sh "docker-compose push"
         }       
     }
         stage('deploy stack') {
